@@ -15,7 +15,7 @@ return {
 
     config = function()
         local cmp = require('cmp')
-        local capabilities = require("cmp_nvim_lsp").capabilities
+        local capabilities = require("cmp_nvim_lsp").default_capabilities()
         local lspconfig = require("lspconfig")
 
         require("fidget").setup({})
@@ -24,12 +24,25 @@ return {
             ensure_installed = {
                 "omnisharp",
                 "clangd",
-                "emmet_ls"
+                "emmet_ls",
+                "angularls"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
                     lspconfig[server_name].setup {
                         capabilities = capabilities
+                    }
+                end,
+
+                angularls = function()
+                    local project_library_path = "D:/Users/uiv19320/AppData/Local/fnm_multishells/12612_1730983500849/node_modules"
+                    local cmd = {"ngserver", "--stdio", "--tsProbeLocations", project_library_path , "--ngProbeLocations", project_library_path}
+
+                    lspconfig.angularls.setup{
+                        cmd = cmd,
+                        on_new_config = function(new_config,new_root_dir)
+                            new_config.cmd = cmd
+                        end,
                     }
                 end,
 
