@@ -1,3 +1,9 @@
+-- source: https://github.com/mfussenegger/nvim-jdtls
+
+local ls_path = '/opt/jdt-language-server'
+local project_path = vim.fn.getcwd()
+local plugin = 'org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar'
+
 local config = {
     -- The command that starts the language server
     -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
@@ -18,14 +24,14 @@ local config = {
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
         -- 💀
-        '-jar', 'D:/Users/uiv19320/Desktop/stuff/tools/jdt-language-server/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
+        '-jar', ls_path .. '/plugins/' ..  plugin,
         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
         -- Must point to the                                                     Change this to
         -- eclipse.jdt.ls installation                                           the actual version
 
 
         -- 💀
-        '-configuration', 'D:/Users/uiv19320/Desktop/stuff/tools/jdt-language-server/config_win',
+        '-configuration', ls_path .. '/config_linux',
         -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
         -- Must point to the                      Change to one of `linux`, `win` or `mac`
         -- eclipse.jdt.ls installation            Depending on your system.
@@ -33,7 +39,7 @@ local config = {
 
         -- 💀
         -- See `data directory configuration` section in the README
-        '-data', 'D:/Users/uiv19320/Desktop/stuff/project/jdt-data'
+        '-data', project_path
     },
 
     -- 💀
