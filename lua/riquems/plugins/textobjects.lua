@@ -47,6 +47,24 @@ return {
                     -- and should return true or false
                     include_surrounding_whitespace = false,
                 },
+                move = {
+                    enable = true,
+                    set_jumps = true, -- whether to set jumps in the jumplist
+                    goto_next_end = {
+                        ["]s"] = { query = "@statement.outer", desc = "Next statement end", query_group = "locals" },
+                        ["]m"] = { query = "@function.outer", desc = "Next function end" },
+                    },
+                    goto_previous_end = {
+                        ["[s"] = { query = "@statement.outer", desc = "Previous statement end", query_group = "locals" },
+                        ["[m"] = { query = "@function.outer", desc = "Previous function end" },
+                    },
+                    goto_next_start = {
+                        ["]S"] = { query = "@statement.outer", desc = "Next statement start", query_group = "locals" },
+                    },
+                    goto_previous_start = {
+                        ["[S"] = { query = "@statement.outer", desc = "Previous statement start", query_group = "locals" },
+                    },
+                },
             },
         }
     end
