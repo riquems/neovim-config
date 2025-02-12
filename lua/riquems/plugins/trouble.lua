@@ -4,14 +4,24 @@ return {
   cmd = "Trouble",
   keys = {
     {
-      "<leader>xx",
-      "<cmd>Trouble diagnostics toggle<cr>",
-      desc = "Diagnostics (Trouble)",
+      "<leader>d",
+      "<cmd>Trouble diagnostics filter.buf=0 toggle<cr>",
+      desc = "Buffer Diagnostics (Trouble)",
     },
     {
-      "<leader>xX",
-      "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-      desc = "Buffer Diagnostics (Trouble)",
+      "<leader>D",
+      "<cmd>Trouble diagnostics toggle filter.buf=0 filter.severity=vim.diagnostic.severity.ERROR<cr>",
+      desc = "Buffer Errors (Trouble)",
+    },
+    {
+      "<leader>pd",
+      "<cmd>Trouble diagnostics toggle<cr>",
+      desc = "Project Diagnostics (Trouble)",
+    },
+    {
+      "<leader>pD",
+      "<cmd>Trouble diagnostics toggle<cr>",
+      desc = "Project Errors (Trouble)",
     },
     {
       "<leader>cs",
