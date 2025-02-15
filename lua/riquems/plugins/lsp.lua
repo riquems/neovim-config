@@ -35,8 +35,14 @@ return {
                 end,
 
                 angularls = function()
-                    local project_library_path = "D:/Users/uiv19320/AppData/Local/fnm_multishells/12612_1730983500849/node_modules"
-                    local cmd = {"ngserver", "--stdio", "--tsProbeLocations", project_library_path , "--ngProbeLocations", project_library_path}
+                    local project_path = vim.uv.cwd()
+
+                    local cmd = {
+                       "ngserver",
+                       "--stdio",
+                       "--tsProbeLocations", project_path,
+                       "--ngProbeLocations", project_path
+                    }
 
                     lspconfig.angularls.setup{
                         cmd = cmd,
