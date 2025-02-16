@@ -22,6 +22,7 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup({
             ensure_installed = {
+                "lua_ls",
                 "omnisharp",
                 "clangd",
                 "emmet_ls",
@@ -82,12 +83,12 @@ return {
                 ['<Tab>'] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
-            sources = cmp.config.sources({
+            sources = {
                 { name = 'nvim_lsp' },
-                { name = 'luasnip' }, -- For luasnip users.
-            }, {
+                { name = 'luasnip' },
                 { name = 'buffer' },
-            })
+                { name = 'lazydev' },
+            }
         })
 
         vim.diagnostic.config({
