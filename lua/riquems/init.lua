@@ -4,6 +4,26 @@ require("riquems.lazy_init")
 
 vim.g.python3_host_prog = "/usr/bin/python3.8"
 
+local in_wsl = vim.loop.os_uname().release:match('WSL')
+
+if in_wsl then
+    if vim.fn.executable('win32yank.exe') == 1 then
+        vim.g.clipboard = {
+            name = "win32yank-wsl",
+            copy = {
+                ["+"] = "win32yank.exe -i",
+                ["*"] = "win32yank.exe -i",
+            },
+            paste = {
+                ["+"] = "win32yank.exe -o",
+                ["*"] = "win32yank.exe -o",
+            },
+        }
+    else
+        print('in wsl and win32yank is not available, clipboard may not function as expected')
+    end
+end
+
 local autocmd = vim.api.nvim_create_autocmd
 
 local function change_dir_from_argv()
