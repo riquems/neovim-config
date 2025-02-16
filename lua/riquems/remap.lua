@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.keymap.set({ "i", "n", "v" }, "<C-e>", "<cmd>Oil<CR>")
 vim.keymap.set({ "i", "n", "v" }, "<C-s>", function()
-    vim.cmd("w")
+   vim.cmd("w")
 end)
 
 -- doesn't work because Shift + Tab conflicts with CTRL + I in terminals

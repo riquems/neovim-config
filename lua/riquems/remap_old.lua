@@ -14,22 +14,22 @@ vim.keymap.set(all_modes, "<C-V>", '"+gP')
 
 -- CTRL + X = cut
 vim.keymap.set(all_modes, "<C-X>", function()
-	local vstart = vim.fn.getpos("'<")
+   local vstart = vim.fn.getpos("'<")
 
-	local vend = vim.fn.getpos("'>")
+   local vend = vim.fn.getpos("'>")
 
-	print(vstart[2])
+   print(vstart[2])
 
-	local line_start = vstart[2]
-	local line_end = vend[2]
+   local line_start = vstart[2]
+   local line_end = vend[2]
 
-	-- or use api.nvim_buf_get_lines
-	--local lines = vim.fn.getline(line_start,line_end)
+   -- or use api.nvim_buf_get_lines
+   --local lines = vim.fn.getline(line_start,line_end)
 
-	-- Join the lines into the selected text
-	--local selected_text = table.concat(lines, "\n")
-	--print(selected_text)
-	--vim.cmd(".d")
+   -- Join the lines into the selected text
+   --local selected_text = table.concat(lines, "\n")
+   --print(selected_text)
+   --vim.cmd(".d")
 end)
 
 -- CTRL + Z = undo

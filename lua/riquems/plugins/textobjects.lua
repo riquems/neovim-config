@@ -1,71 +1,71 @@
 return {
-    enabled = true,
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter"
-    },
-    config = function()
-        require'nvim-treesitter.configs'.setup {
-            textobjects = {
-                select = {
-                    enable = true,
+   enabled = true,
+   "nvim-treesitter/nvim-treesitter-textobjects",
+   dependencies = {
+      "nvim-treesitter/nvim-treesitter"
+   },
+   config = function()
+      require'nvim-treesitter.configs'.setup {
+         textobjects = {
+            select = {
+               enable = true,
 
-                    -- Automatically jump forward to textobj, similar to targets.vim
-                    lookahead = true,
+               -- Automatically jump forward to textobj, similar to targets.vim
+               lookahead = true,
 
-                    keymaps = {
-                        -- You can use the capture groups defined in textobjects.scm
-                        ["af"] = "@function.outer",
-                        ["if"] = "@function.inner",
-                        ["ac"] = "@class.outer",
-                        -- You can optionally set descriptions to the mappings (used in the desc parameter of
-                        -- nvim_buf_set_keymap) which plugins like which-key display
-                        ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-                        -- You can also use captures from other query groups like `locals.scm`
-                        ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
-                    },
-                    -- You can choose the select mode (default is charwise 'v')
-                    --
-                    -- Can also be a function which gets passed a table with the keys
-                    -- * query_string: eg '@function.inner'
-                    -- * method: eg 'v' or 'o'
-                    -- and should return the mode ('v', 'V', or '<c-v>') or a table
-                    -- mapping query_strings to modes.
-                    selection_modes = {
-                        ['@parameter.outer'] = 'v', -- charwise
-                        ['@function.outer'] = 'V', -- linewise
-                        ['@class.outer'] = '<c-v>', -- blockwise
-                    },
-                    -- If you set this to `true` (default is `false`) then any textobject is
-                    -- extended to include preceding or succeeding whitespace. Succeeding
-                    -- whitespace has priority in order to act similarly to eg the built-in
-                    -- `ap`.
-                    --
-                    -- Can also be a function which gets passed a table with the keys
-                    -- * query_string: eg '@function.inner'
-                    -- * selection_mode: eg 'v'
-                    -- and should return true or false
-                    include_surrounding_whitespace = false,
-                },
-                move = {
-                    enable = true,
-                    set_jumps = true, -- whether to set jumps in the jumplist
-                    goto_next_end = {
-                        ["]s"] = { query = "@statement.outer", desc = "Next statement end", query_group = "locals" },
-                        ["]m"] = { query = "@function.outer", desc = "Next function end" },
-                    },
-                    goto_previous_end = {
-                        ["[s"] = { query = "@statement.outer", desc = "Previous statement end", query_group = "locals" },
-                        ["[m"] = { query = "@function.outer", desc = "Previous function end" },
-                    },
-                    goto_next_start = {
-                        ["]S"] = { query = "@statement.outer", desc = "Next statement start", query_group = "locals" },
-                    },
-                    goto_previous_start = {
-                        ["[S"] = { query = "@statement.outer", desc = "Previous statement start", query_group = "locals" },
-                    },
-                },
+               keymaps = {
+                  -- You can use the capture groups defined in textobjects.scm
+                  ["af"] = "@function.outer",
+                  ["if"] = "@function.inner",
+                  ["ac"] = "@class.outer",
+                  -- You can optionally set descriptions to the mappings (used in the desc parameter of
+                  -- nvim_buf_set_keymap) which plugins like which-key display
+                  ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+                  -- You can also use captures from other query groups like `locals.scm`
+                  ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
+               },
+               -- You can choose the select mode (default is charwise 'v')
+               --
+               -- Can also be a function which gets passed a table with the keys
+               -- * query_string: eg '@function.inner'
+               -- * method: eg 'v' or 'o'
+               -- and should return the mode ('v', 'V', or '<c-v>') or a table
+               -- mapping query_strings to modes.
+               selection_modes = {
+                  ['@parameter.outer'] = 'v', -- charwise
+                  ['@function.outer'] = 'V', -- linewise
+                  ['@class.outer'] = '<c-v>', -- blockwise
+               },
+               -- If you set this to `true` (default is `false`) then any textobject is
+               -- extended to include preceding or succeeding whitespace. Succeeding
+               -- whitespace has priority in order to act similarly to eg the built-in
+               -- `ap`.
+               --
+               -- Can also be a function which gets passed a table with the keys
+               -- * query_string: eg '@function.inner'
+               -- * selection_mode: eg 'v'
+               -- and should return true or false
+               include_surrounding_whitespace = false,
             },
-        }
-    end
+            move = {
+               enable = true,
+               set_jumps = true, -- whether to set jumps in the jumplist
+               goto_next_end = {
+                  ["]s"] = { query = "@statement.outer", desc = "Next statement end", query_group = "locals" },
+                  ["]m"] = { query = "@function.outer", desc = "Next function end" },
+               },
+               goto_previous_end = {
+                  ["[s"] = { query = "@statement.outer", desc = "Previous statement end", query_group = "locals" },
+                  ["[m"] = { query = "@function.outer", desc = "Previous function end" },
+               },
+               goto_next_start = {
+                  ["]S"] = { query = "@statement.outer", desc = "Next statement start", query_group = "locals" },
+               },
+               goto_previous_start = {
+                  ["[S"] = { query = "@statement.outer", desc = "Previous statement start", query_group = "locals" },
+               },
+            },
+         },
+      }
+   end
 }
