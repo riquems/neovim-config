@@ -1,4 +1,8 @@
 vim.g.mapleader = " "
+
+vim.keymap.set({ "n", "v" }, "<C-Right>", "w")
+vim.keymap.set({ "n", "v" }, "<C-Left>", "b")
+
 vim.keymap.set({ "i", "n", "v" }, "<C-e>", "<cmd>Oil<CR>")
 vim.keymap.set({ "i", "n", "v" }, "<C-s>", function()
    vim.cmd("w")
