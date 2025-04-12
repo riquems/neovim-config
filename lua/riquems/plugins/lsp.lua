@@ -3,18 +3,11 @@ return {
    dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/nvim-cmp",
-      "saadparwaiz1/cmp_luasnip",
       "j-hui/fidget.nvim",
       "Hoffs/omnisharp-extended-lsp.nvim"
    },
 
    config = function()
-      local cmp = require('cmp')
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local lspconfig = require("lspconfig")
 
@@ -68,25 +61,6 @@ return {
       })
 
       lspconfig.hls.setup({})
-
-      local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
-      cmp.setup({
-         snippet = {
-            expand = function(args)
-               require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-            end,
-         },
-         mapping = cmp.mapping.preset.insert({
-            ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-         }),
-         sources = {
-            { name = 'nvim_lsp' },
-            { name = 'luasnip' },
-            { name = 'buffer' },
-            { name = 'lazydev' },
-         }
-      })
 
       vim.diagnostic.config({
          -- update_in_insert = true,
