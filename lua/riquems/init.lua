@@ -1,6 +1,7 @@
 require("riquems.set")
 require("riquems.remap")
 require("riquems.lazy_init")
+require("riquems.diff")
 
 vim.g.python3_host_prog = "/usr/bin/python3.8"
 
